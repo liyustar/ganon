@@ -21,11 +21,8 @@
     </parent>
 
     <properties>
-        <ganon-core.version>0.0.1-SNAPSHOT</ganon-core.version>
-
         <java.version>1.8</java.version>
         <guava.version>28.2-jre</guava.version>
-        <flyway.version>5.0.7</flyway.version>
         <swagger-ui.version>2.9.2</swagger-ui.version>
         <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
         <pagehelper-spring-boot-starter.version>1.2.13</pagehelper-spring-boot-starter.version>
@@ -43,20 +40,13 @@
             <dependency>
                 <groupId>com.lyx.ganon</groupId>
                 <artifactId>ganon-core</artifactId>
-                <version>${ganon-core.version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-
-            <!-- flyway -->
-            <dependency>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-core</artifactId>
-                <version>${flyway.version}</version>
             </dependency>
 
             <!-- Swagger -->
