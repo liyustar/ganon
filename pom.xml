@@ -32,6 +32,7 @@
     <!-- 模块说明：这里声明多个子模块 -->
     <modules>
         <module>ganon-core</module>
+        <module>ganon-admin</module>
     </modules>
 
     <!-- 版本说明：这里统一管理依赖的版本号 -->

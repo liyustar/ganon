@@ -7,4 +7,4 @@ create table sys_user
   password_sha varchar(64),
   primary key (id)
 );
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+-- ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
