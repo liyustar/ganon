@@ -1,6 +1,6 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://kdocker:3306/GANON_ADMIN
-    username: root
-    password: root
+    url: jdbc:mysql://kdocker:3306/ganon_admin
+    username: ganon
+    password: ganon

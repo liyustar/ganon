@@ -1,0 +1,45 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties resource="mybatis-generator-config.properties"></properties>
+
+    <context id="admin" targetRuntime="MyBatis3Simple">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}"/>
+
+        <javaModelGenerator targetPackage="com.lyx.ganon.admin.model" targetProject="src/main/java"/>
+
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.lyx.ganon.admin.mapper" targetProject="src/main/java"/>
+
+        <!--        <sqlMapGenerator targetPackage="com.lyx.ganon.admin.mapper" targetProject="src/main/java" type="XMLMAPPER"/>-->
+
+        <table tableName="sys_user"/>
+    </context>
+
+    <context id="func" targetRuntime="MyBatis3Simple">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}"/>
+
+        <javaModelGenerator targetPackage="com.lyx.ganon.admin.func.model" targetProject="src/main/java"/>
+
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.lyx.ganon.admin.func.mapper" targetProject="src/main/java"/>
+
+        <table tableName="func_tiny_url"/>
+    </context>
+
+</generatorConfiguration>
