@@ -1,0 +1,11 @@
+POST {{host}}/func/tinyurl
+Content-Type: application/x-www-form-urlencoded
+
+sourceUrl=http://github.com
+
+###
+GET {{host}}/func/tinyurl/3f1fc505-d
+
+###
+
+

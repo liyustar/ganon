@@ -1,0 +1,1 @@
+alter table func_tiny_url add column md5 char(32) not null;

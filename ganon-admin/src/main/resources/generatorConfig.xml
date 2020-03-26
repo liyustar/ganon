@@ -24,7 +24,7 @@
         <table tableName="sys_user"/>
     </context>
 
-    <context id="func" targetRuntime="MyBatis3Simple">
+    <context id="func" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="true"/>
             <property name="suppressAllComments" value="true"/>
