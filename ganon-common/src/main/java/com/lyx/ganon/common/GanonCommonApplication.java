@@ -1,13 +1,13 @@
-package com.lyx.ganon.core;
+package com.lyx.ganon.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GanonCoreApplication {
+public class GanonCommonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GanonCoreApplication.class, args);
+		SpringApplication.run(GanonCommonApplication.class, args);
 	}
 
 }

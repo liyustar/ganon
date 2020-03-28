@@ -3,7 +3,7 @@ package com.lyx.ganon.admin.func.service;
 import com.lyx.ganon.admin.func.mapper.FuncTinyUrlMapper;
 import com.lyx.ganon.admin.func.model.FuncTinyUrl;
 import com.lyx.ganon.admin.func.model.FuncTinyUrlExample;
-import com.lyx.ganon.core.DigestUtils;
+import com.lyx.ganon.common.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

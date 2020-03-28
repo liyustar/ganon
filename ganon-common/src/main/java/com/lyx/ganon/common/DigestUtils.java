@@ -1,4 +1,4 @@
-package com.lyx.ganon.core;
+package com.lyx.ganon.common;
 
 import lombok.extern.slf4j.Slf4j;
 

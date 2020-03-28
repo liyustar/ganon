@@ -8,8 +8,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>ganon-core</artifactId>
-	<name>ganon-core</name>
+	<artifactId>ganon-common</artifactId>
+	<name>ganon-common</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
