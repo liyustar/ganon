@@ -4,7 +4,7 @@
 <generatorConfiguration>
     <properties resource="mybatis-generator-config.properties"></properties>
 
-    <context id="admin" targetRuntime="MyBatis3Simple">
+    <context id="admin" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="true"/>
             <property name="suppressAllComments" value="true"/>
