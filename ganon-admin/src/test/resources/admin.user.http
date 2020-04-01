@@ -1,0 +1,8 @@
+POST {{host}}/users/byid
+Content-Type: application/json
+
+[1,2]
+
+###
+
+

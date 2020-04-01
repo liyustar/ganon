@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @Description UserController
@@ -42,6 +43,25 @@ public class UserController {
     public ResponseObj<SysUser> getUser(@PathVariable(value = "name") String name) {
         SysUser user = service.getUser(name);
         return ResponseObj.success(user);
+    }
+
+    @GetMapping("/{start}/to/{end}")
+    public ResponseObj<List<SysUser>> getUserByRange(@PathVariable(value = "start") Integer start,
+                                                     @PathVariable(value = "end") Integer end) {
+        List<SysUser> users = service.getUserByRange(start, end);
+        return ResponseObj.success(users);
+    }
+
+    @PostMapping("/byname")
+    public ResponseObj<List<SysUser>> getUserByNames(@RequestBody List<String> names) {
+        List<SysUser> users = service.getUserByNames(names);
+        return ResponseObj.success(users);
+    }
+
+    @PostMapping("/byid")
+    public ResponseObj<List<SysUser>> getUserByIds(@RequestBody List<Integer> ids) {
+        List<SysUser> users = service.getUserByIds(ids);
+        return ResponseObj.success(users);
     }
 
 }
