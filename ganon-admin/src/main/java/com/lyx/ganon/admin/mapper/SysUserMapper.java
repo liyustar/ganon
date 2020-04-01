@@ -1,16 +1,19 @@
 package com.lyx.ganon.admin.mapper;
 
 import com.lyx.ganon.admin.model.SysUser;
-import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import com.lyx.ganon.admin.model.SysUserExample;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
 public interface SysUserMapper {
+    @SelectProvider(type=SysUserSqlProvider.class, method="countByExample")
+    long countByExample(SysUserExample example);
+
+    @DeleteProvider(type=SysUserSqlProvider.class, method="deleteByExample")
+    int deleteByExample(SysUserExample example);
+
     @Delete({
         "delete from sys_user",
         "where id = #{id,jdbcType=INTEGER}"
@@ -27,6 +30,19 @@ public interface SysUserMapper {
     })
     int insert(SysUser record);
 
+    @InsertProvider(type=SysUserSqlProvider.class, method="insertSelective")
+    int insertSelective(SysUser record);
+
+    @SelectProvider(type=SysUserSqlProvider.class, method="selectByExample")
+    @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+        @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+        @Result(column="password_md5", property="passwordMd5", jdbcType=JdbcType.VARCHAR),
+        @Result(column="password_sha", property="passwordSha", jdbcType=JdbcType.VARCHAR)
+    })
+    List<SysUser> selectByExample(SysUserExample example);
+
     @Select({
         "select",
         "id, name, password, password_md5, password_sha",
@@ -42,19 +58,14 @@ public interface SysUserMapper {
     })
     SysUser selectByPrimaryKey(Integer id);
 
-    @Select({
-        "select",
-        "id, name, password, password_md5, password_sha",
-        "from sys_user"
-    })
-    @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
-        @Result(column="password_md5", property="passwordMd5", jdbcType=JdbcType.VARCHAR),
-        @Result(column="password_sha", property="passwordSha", jdbcType=JdbcType.VARCHAR)
-    })
-    List<SysUser> selectAll();
+    @UpdateProvider(type=SysUserSqlProvider.class, method="updateByExampleSelective")
+    int updateByExampleSelective(@Param("record") SysUser record, @Param("example") SysUserExample example);
+
+    @UpdateProvider(type=SysUserSqlProvider.class, method="updateByExample")
+    int updateByExample(@Param("record") SysUser record, @Param("example") SysUserExample example);
+
+    @UpdateProvider(type=SysUserSqlProvider.class, method="updateByPrimaryKeySelective")
+    int updateByPrimaryKeySelective(SysUser record);
 
     @Update({
         "update sys_user",
