@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
  * 用来测试接口调用的压测数值
+ * @author liyuxing
  */
 public class MetricsInvoker {
 
@@ -33,6 +35,10 @@ public class MetricsInvoker {
     }
 
     public <T> Metrics invoke(Callable<T> callable) throws InterruptedException, ExecutionException {
+        return invoke(callable, (t) -> true);
+    }
+
+    public <T> Metrics invoke(Callable<T> callable, Predicate<T> predicate) throws InterruptedException, ExecutionException {
         List<Integer> allocateSize = Lists.newArrayListWithCapacity(threadNum);
         int remainTimes = invokeTimes;
         for (int i = 0; i < threadNum; i++) {
@@ -51,7 +57,7 @@ public class MetricsInvoker {
 
         metrics.startAt(System.currentTimeMillis());
         List<Future<Metrics>> futureList = allocateSize.stream()
-                .map(x -> executorService.submit(() -> invokeInner(x, callable)))
+                .map(x -> executorService.submit(() -> invokeInner(x, callable, predicate)))
                 .collect(Collectors.toList());
 
         List<Metrics> metricsList = Lists.newArrayListWithCapacity(threadNum);
@@ -64,15 +70,19 @@ public class MetricsInvoker {
         return metricsList.stream().reduce(metrics, Metrics::merge);
     }
 
-    private <T> Metrics invokeInner(int times, Callable<T> callable) {
+    private <T> Metrics invokeInner(int times, Callable<T> callable, Predicate<T> predicate) {
         Metrics metrics = new Metrics(times);
         metrics.startAt(System.currentTimeMillis());
 
         for (int i = 0; i < times; i++) {
             long start = System.currentTimeMillis();
             try {
-                callable.call();
-                metrics.addSuccess();
+                T t = callable.call();
+                if (predicate.test(t)) {
+                    metrics.addSuccess();
+                } else {
+                    metrics.addFail();
+                }
             } catch (Exception e) {
                 metrics.addFail();
             }

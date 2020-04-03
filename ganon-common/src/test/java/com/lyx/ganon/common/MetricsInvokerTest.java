@@ -20,6 +20,8 @@ class MetricsInvokerTest {
         log.info("{}", metrics);
     }
 
+    private static ThreadLocal<Random> r = ThreadLocal.withInitial(Random::new);
+
     @Test
     public void test2() throws Exception {
         MetricsInvoker invoker = MetricsInvoker.createBuilder()
@@ -27,9 +29,8 @@ class MetricsInvokerTest {
                 .setThreadNum(4)
                 .build();
 
-        Random r = new Random();
         MetricsInvoker.Metrics metrics = invoker.invoke(() -> {
-            int t = r.nextInt(5) + 1;
+            int t = r.get().nextInt(5) + 1;
             TimeUnit.MILLISECONDS.sleep(t);
             return 1;
         });
