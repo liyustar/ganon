@@ -1,0 +1,1 @@
+create unique index biz_account_acc_code_uindex on biz_account (acc_code);
