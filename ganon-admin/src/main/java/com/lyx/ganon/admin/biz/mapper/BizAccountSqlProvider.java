@@ -43,6 +43,10 @@ public class BizAccountSqlProvider {
             sql.VALUES("created", "#{created,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getVersion() != null) {
+            sql.VALUES("version", "#{version,jdbcType=INTEGER}");
+        }
+        
         return sql.toString();
     }
 
@@ -56,6 +60,7 @@ public class BizAccountSqlProvider {
         sql.SELECT("acc_code");
         sql.SELECT("amt");
         sql.SELECT("created");
+        sql.SELECT("version");
         sql.FROM("biz_account");
         applyWhere(sql, example, false);
         
@@ -89,6 +94,10 @@ public class BizAccountSqlProvider {
             sql.SET("created = #{record.created,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getVersion() != null) {
+            sql.SET("version = #{record.version,jdbcType=INTEGER}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -101,6 +110,7 @@ public class BizAccountSqlProvider {
         sql.SET("acc_code = #{record.accCode,jdbcType=VARCHAR}");
         sql.SET("amt = #{record.amt,jdbcType=DOUBLE}");
         sql.SET("created = #{record.created,jdbcType=TIMESTAMP}");
+        sql.SET("version = #{record.version,jdbcType=INTEGER}");
         
         BizAccountExample example = (BizAccountExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -121,6 +131,10 @@ public class BizAccountSqlProvider {
         
         if (record.getCreated() != null) {
             sql.SET("created = #{created,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getVersion() != null) {
+            sql.SET("version = #{version,jdbcType=INTEGER}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

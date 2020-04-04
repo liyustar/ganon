@@ -56,6 +56,18 @@ public class AccountService {
         return accountMapper.updateByPrimaryKey(bizAccount);
     }
 
+    public int incrAmtV2(String accCode, Double incrAmt) {
+        BizAccountExample example = new BizAccountExample();
+        BizAccountExample.Criteria criteria = example.createCriteria();
+        criteria.andAccCodeEqualTo(accCode);
+        BizAccount bizAccount = accountMapper.selectByExample(example).stream().findFirst()
+                .orElseThrow(() -> new RuntimeException("acc invalid. " + accCode));
+
+        criteria.andVersionEqualTo(bizAccount.getVersion());
+        bizAccount.setAmt(bizAccount.getAmt() + incrAmt);
+        bizAccount.setVersion(bizAccount.getVersion() + 1);
+        return accountMapper.updateByExample(bizAccount, example);
+    }
 
     public List<BizAccount> getByIdRange(int start, int end) {
         BizAccountExample example = new BizAccountExample();

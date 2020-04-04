@@ -11,6 +11,8 @@ public class BizAccount {
 
     private Date created;
 
+    private Integer version;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class BizAccount {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

@@ -1,0 +1,1 @@
+alter table biz_account add column version int not null default 0;
