@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 
+import java.util.List;
 import java.util.function.IntConsumer;
 
 @Slf4j
@@ -75,7 +75,7 @@ class UserControllerIT {
 
         // user02 去评论一下
         BizArticleComment comment01 = new BizArticleComment();
-        comment01.setArticleId(article01.getAuthorId());
+        comment01.setArticleId(article01.getId());
         comment01.setCreatorId(user02.getId());
         comment01.setContent("good article");
         createComment(comment01);
@@ -88,6 +88,38 @@ class UserControllerIT {
         // user02 再打赏一个
         RewardReq rewardReq02 = new RewardReq(article01.getId(), user02.getId(), 15.0);
         createReward(rewardReq02);
+    }
+
+    @Test
+    public void queryTest() {
+        // 展示文章信息与前10条评论
+        List<BizArticle> articles = getArticles();
+
+        int articleId = articles.stream().findFirst().orElseThrow(() -> new RuntimeException()).getId();
+        getComments(articleId);
+
+        // 展示文章打赏流水
+        getCashLogs(articleId);
+    }
+
+    private void getCashLogs(int articleId) {
+        String ret = restTemplate.getForObject("/articles/" + articleId + "/rewards", String.class);
+        log.info("--ret: {}", ret);
+    }
+
+    private void getComments(int articleId) {
+        String ret = restTemplate.getForObject("/articles/" + articleId + "/comments", String.class);
+        log.info("--ret: {}", ret);
+    }
+
+    private List<BizArticle> getArticles() {
+        ResponseEntity<ResponseObj<List<BizArticle>>> ret = restTemplate.exchange("/articles",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<ResponseObj<List<BizArticle>>>() {
+                });
+        log.info("--ret: {}", ret.getBody());
+        return ret.getBody().getData();
     }
 
     private void createUser(BizUser user) throws JsonProcessingException {
@@ -110,7 +142,7 @@ class UserControllerIT {
 
     private void createReward(RewardReq rewardReq) throws JsonProcessingException {
         postTemplate(rewardReq,
-                "/articles/" + rewardReq.getArticleId() + "/reward",
+                "/articles/" + rewardReq.getArticleId() + "/rewards",
                 (i) -> {});
     }
 

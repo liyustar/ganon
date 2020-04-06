@@ -3,6 +3,7 @@ package com.lyx.ganon.mybatis.controller;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 public class ResponseObj<T> {
 
     private int code;
