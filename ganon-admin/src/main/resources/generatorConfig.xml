@@ -2,7 +2,7 @@
         "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <properties resource="mybatis-generator-config.properties"></properties>
+    <properties resource="mybatis-generator-config.properties"/>
 
     <context id="admin" targetRuntime="MyBatis3">
         <commentGenerator>

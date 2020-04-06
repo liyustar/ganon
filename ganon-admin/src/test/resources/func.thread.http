@@ -1,7 +1,7 @@
-POST {{host}}/thread/short_job
+POST {{host}}/func/thread/short_job
 
 ###
-POST {{host}}/thread/long_job
+POST {{host}}/func/thread/long_job
 
 ###
 

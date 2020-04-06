@@ -17,10 +17,10 @@ public class ThreadPoolConfig {
         int processors = Runtime.getRuntime().availableProcessors();
         ThreadPoolTaskExecutor taskExecutor = new TimedThreadPoolTaskExecutor(registry,
                 "my.task.executor", Collections.emptyList());
-        taskExecutor.setCorePoolSize(processors * 2 + 1);
-        taskExecutor.setMaxPoolSize(processors * 4);
+        taskExecutor.setCorePoolSize(processors + 1);
+        taskExecutor.setMaxPoolSize(processors * 2);
         taskExecutor.setAwaitTerminationSeconds(10);
-        taskExecutor.setQueueCapacity(20);
+        taskExecutor.setQueueCapacity(5);
         taskExecutor.setThreadNamePrefix("my-task-executor-");
         taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.AbortPolicy());
         return taskExecutor;

@@ -4,3 +4,8 @@ spring:
     url: jdbc:mysql://kdocker:3306/ganon_admin
     username: ganon
     password: ganon
+
+# 分布式锁配置
+#zk:
+#  connectString: "localhost:2181"
+#  rootPath: /SpringIntegration-LockRegistry

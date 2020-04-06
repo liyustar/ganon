@@ -39,6 +39,11 @@ public class AccountService {
         }
     }
 
+    /**
+     * 唯一索引创建
+     * @param addAccountVO
+     * @return
+     */
     public int add(AddAccountVO addAccountVO) {
         BizAccount newAccount = new BizAccount();
         newAccount.setAccCode(addAccountVO.getAccCode());
@@ -56,6 +61,12 @@ public class AccountService {
         return accountMapper.updateByPrimaryKey(bizAccount);
     }
 
+    /**
+     * 乐观锁修改
+     * @param accCode
+     * @param incrAmt
+     * @return
+     */
     public int incrAmtV2(String accCode, Double incrAmt) {
         BizAccountExample example = new BizAccountExample();
         BizAccountExample.Criteria criteria = example.createCriteria();
