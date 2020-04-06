@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: ganon-mybatis
+  profiles:
+    active: dev
+  datasource:
+    hikari:
+      minimum-idle: 8
+      maximum-pool-size: 20
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
