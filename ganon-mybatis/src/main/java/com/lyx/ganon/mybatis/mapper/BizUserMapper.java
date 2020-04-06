@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -30,14 +31,16 @@ public interface BizUserMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into biz_user (id, name, ",
-        "password, created)",
-        "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
-        "#{password,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP})"
+        "insert into biz_user (name, password, ",
+        "created)",
+        "values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
+        "#{created,jdbcType=TIMESTAMP})"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(BizUser record);
 
     @InsertProvider(type=BizUserSqlProvider.class, method="insertSelective")
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insertSelective(BizUser record);
 
     @SelectProvider(type=BizUserSqlProvider.class, method="selectByExample")

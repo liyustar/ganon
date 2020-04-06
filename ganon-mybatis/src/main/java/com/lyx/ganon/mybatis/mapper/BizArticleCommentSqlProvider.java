@@ -27,10 +27,6 @@ public class BizArticleCommentSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("biz_article_comment");
         
-        if (record.getId() != null) {
-            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-        
         if (record.getArticleId() != null) {
             sql.VALUES("article_id", "#{articleId,jdbcType=INTEGER}");
         }

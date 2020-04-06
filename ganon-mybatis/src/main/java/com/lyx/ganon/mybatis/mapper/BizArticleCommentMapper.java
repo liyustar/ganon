@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -30,16 +31,16 @@ public interface BizArticleCommentMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into biz_article_comment (id, article_id, ",
-        "creator_id, created, ",
-        "content)",
-        "values (#{id,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, ",
-        "#{creatorId,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, ",
-        "#{content,jdbcType=LONGVARCHAR})"
+        "insert into biz_article_comment (article_id, creator_id, ",
+        "created, content)",
+        "values (#{articleId,jdbcType=INTEGER}, #{creatorId,jdbcType=INTEGER}, ",
+        "#{created,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(BizArticleComment record);
 
     @InsertProvider(type=BizArticleCommentSqlProvider.class, method="insertSelective")
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insertSelective(BizArticleComment record);
 
     @SelectProvider(type=BizArticleCommentSqlProvider.class, method="selectByExampleWithBLOBs")

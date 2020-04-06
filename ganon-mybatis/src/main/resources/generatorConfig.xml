@@ -21,11 +21,22 @@
 
         <!--        <sqlMapGenerator targetPackage="com.lyx.ganon.mybatis.mapper" targetProject="src/main/java" type="XMLMAPPER"/>-->
 
-        <table tableName="biz_user"/>
-        <table tableName="biz_article"/>
-        <table tableName="biz_article_comment"/>
-        <table tableName="biz_account" schema="ganon_mybatis" catalog="ganon_mybatis"/>
-        <table tableName="biz_cash_log"/>
+        <table tableName="biz_user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="biz_article">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="biz_article_comment">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="biz_account" schema="ganon_mybatis" catalog="ganon_mybatis">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="biz_cash_log">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 
 </generatorConfiguration>

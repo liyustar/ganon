@@ -27,10 +27,6 @@ public class BizCashLogSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("biz_cash_log");
         
-        if (record.getId() != null) {
-            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-        
         if (record.getAccFrom() != null) {
             sql.VALUES("acc_from", "#{accFrom,jdbcType=VARCHAR}");
         }

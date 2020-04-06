@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -30,16 +31,18 @@ public interface BizCashLogMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into biz_cash_log (id, acc_from, ",
-        "acc_to, article_id, ",
-        "amt, remark, created)",
-        "values (#{id,jdbcType=INTEGER}, #{accFrom,jdbcType=VARCHAR}, ",
-        "#{accTo,jdbcType=VARCHAR}, #{articleId,jdbcType=INTEGER}, ",
-        "#{amt,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP})"
+        "insert into biz_cash_log (acc_from, acc_to, ",
+        "article_id, amt, remark, ",
+        "created)",
+        "values (#{accFrom,jdbcType=VARCHAR}, #{accTo,jdbcType=VARCHAR}, ",
+        "#{articleId,jdbcType=INTEGER}, #{amt,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR}, ",
+        "#{created,jdbcType=TIMESTAMP})"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(BizCashLog record);
 
     @InsertProvider(type=BizCashLogSqlProvider.class, method="insertSelective")
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insertSelective(BizCashLog record);
 
     @SelectProvider(type=BizCashLogSqlProvider.class, method="selectByExample")

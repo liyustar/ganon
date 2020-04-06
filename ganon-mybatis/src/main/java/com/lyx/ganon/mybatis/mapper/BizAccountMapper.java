@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -24,22 +25,22 @@ public interface BizAccountMapper {
     int deleteByExample(BizAccountExample example);
 
     @Delete({
-        "delete from ganon_mybatis..biz_account",
+        "delete from biz_account",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into ganon_mybatis..biz_account (id, acc_code, ",
-        "user_id, amt, remark, ",
-        "created)",
-        "values (#{id,jdbcType=INTEGER}, #{accCode,jdbcType=VARCHAR}, ",
-        "#{userId,jdbcType=INTEGER}, #{amt,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR}, ",
-        "#{created,jdbcType=TIMESTAMP})"
+        "insert into biz_account (acc_code, user_id, ",
+        "amt, remark, created)",
+        "values (#{accCode,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, ",
+        "#{amt,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP})"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(BizAccount record);
 
     @InsertProvider(type=BizAccountSqlProvider.class, method="insertSelective")
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insertSelective(BizAccount record);
 
     @SelectProvider(type=BizAccountSqlProvider.class, method="selectByExample")
@@ -56,7 +57,7 @@ public interface BizAccountMapper {
     @Select({
         "select",
         "id, acc_code, user_id, amt, remark, created",
-        "from ganon_mybatis..biz_account",
+        "from biz_account",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
@@ -79,7 +80,7 @@ public interface BizAccountMapper {
     int updateByPrimaryKeySelective(BizAccount record);
 
     @Update({
-        "update ganon_mybatis..biz_account",
+        "update biz_account",
         "set acc_code = #{accCode,jdbcType=VARCHAR},",
           "user_id = #{userId,jdbcType=INTEGER},",
           "amt = #{amt,jdbcType=DOUBLE},",

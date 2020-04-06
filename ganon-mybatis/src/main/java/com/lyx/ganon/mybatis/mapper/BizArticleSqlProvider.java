@@ -27,10 +27,6 @@ public class BizArticleSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("biz_article");
         
-        if (record.getId() != null) {
-            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-        
         if (record.getTitle() != null) {
             sql.VALUES("title", "#{title,jdbcType=VARCHAR}");
         }

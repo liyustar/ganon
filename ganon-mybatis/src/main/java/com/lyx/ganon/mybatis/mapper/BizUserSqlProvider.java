@@ -27,10 +27,6 @@ public class BizUserSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("biz_user");
         
-        if (record.getId() != null) {
-            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-        
         if (record.getName() != null) {
             sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
         }

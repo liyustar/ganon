@@ -11,25 +11,21 @@ import org.apache.ibatis.jdbc.SQL;
 public class BizAccountSqlProvider {
     public String countByExample(BizAccountExample example) {
         SQL sql = new SQL();
-        sql.SELECT("count(*)").FROM("ganon_mybatis..biz_account");
+        sql.SELECT("count(*)").FROM("biz_account");
         applyWhere(sql, example, false);
         return sql.toString();
     }
 
     public String deleteByExample(BizAccountExample example) {
         SQL sql = new SQL();
-        sql.DELETE_FROM("ganon_mybatis..biz_account");
+        sql.DELETE_FROM("biz_account");
         applyWhere(sql, example, false);
         return sql.toString();
     }
 
     public String insertSelective(BizAccount record) {
         SQL sql = new SQL();
-        sql.INSERT_INTO("ganon_mybatis..biz_account");
-        
-        if (record.getId() != null) {
-            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
+        sql.INSERT_INTO("biz_account");
         
         if (record.getAccCode() != null) {
             sql.VALUES("acc_code", "#{accCode,jdbcType=VARCHAR}");
@@ -66,7 +62,7 @@ public class BizAccountSqlProvider {
         sql.SELECT("amt");
         sql.SELECT("remark");
         sql.SELECT("created");
-        sql.FROM("ganon_mybatis..biz_account");
+        sql.FROM("biz_account");
         applyWhere(sql, example, false);
         
         if (example != null && example.getOrderByClause() != null) {
@@ -81,7 +77,7 @@ public class BizAccountSqlProvider {
         BizAccountExample example = (BizAccountExample) parameter.get("example");
         
         SQL sql = new SQL();
-        sql.UPDATE("ganon_mybatis..biz_account");
+        sql.UPDATE("biz_account");
         
         if (record.getId() != null) {
             sql.SET("id = #{record.id,jdbcType=INTEGER}");
@@ -113,7 +109,7 @@ public class BizAccountSqlProvider {
 
     public String updateByExample(Map<String, Object> parameter) {
         SQL sql = new SQL();
-        sql.UPDATE("ganon_mybatis..biz_account");
+        sql.UPDATE("biz_account");
         
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("acc_code = #{record.accCode,jdbcType=VARCHAR}");
@@ -129,7 +125,7 @@ public class BizAccountSqlProvider {
 
     public String updateByPrimaryKeySelective(BizAccount record) {
         SQL sql = new SQL();
-        sql.UPDATE("ganon_mybatis..biz_account");
+        sql.UPDATE("biz_account");
         
         if (record.getAccCode() != null) {
             sql.SET("acc_code = #{accCode,jdbcType=VARCHAR}");

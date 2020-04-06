@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -30,16 +31,16 @@ public interface BizArticleMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into biz_article (id, title, ",
-        "author_id, created, ",
-        "content)",
-        "values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, ",
-        "#{authorId,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, ",
-        "#{content,jdbcType=LONGVARCHAR})"
+        "insert into biz_article (title, author_id, ",
+        "created, content)",
+        "values (#{title,jdbcType=VARCHAR}, #{authorId,jdbcType=INTEGER}, ",
+        "#{created,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(BizArticle record);
 
     @InsertProvider(type=BizArticleSqlProvider.class, method="insertSelective")
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insertSelective(BizArticle record);
 
     @SelectProvider(type=BizArticleSqlProvider.class, method="selectByExampleWithBLOBs")
