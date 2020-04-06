@@ -1,6 +1,6 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://sworker:3306/ganon_mybatis
+    url: jdbc:mysql://sworker:3306/ganon_mybatis?useUnicode=true&characterEncoding=utf8
     username: ganon
     password: ganon

@@ -13,12 +13,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseObj<Integer> addUser(@RequestBody BizUser user) {
-        return ResponseObj.success(userService.addUser(user));
+    public ResponseObj<Integer> createUser(@RequestBody BizUser user) {
+        return ResponseObj.success(userService.createUser(user));
     }
 
     @DeleteMapping
-    public ResponseObj addUser() {
+    public ResponseObj deleteAll() {
         userService.deleteAll();
         return ResponseObj.success();
     }

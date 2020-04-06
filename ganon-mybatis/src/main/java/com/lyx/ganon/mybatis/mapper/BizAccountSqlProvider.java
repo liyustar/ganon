@@ -72,6 +72,10 @@ public class BizAccountSqlProvider {
         return sql.toString();
     }
 
+    public String selectByExampleForUpdate(BizAccountExample example) {
+        return selectByExample(example) + " FOR UPDATE";
+    }
+
     public String updateByExampleSelective(Map<String, Object> parameter) {
         BizAccount record = (BizAccount) parameter.get("record");
         BizAccountExample example = (BizAccountExample) parameter.get("example");

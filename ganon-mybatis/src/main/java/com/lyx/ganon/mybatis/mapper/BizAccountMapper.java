@@ -54,6 +54,17 @@ public interface BizAccountMapper {
     })
     List<BizAccount> selectByExample(BizAccountExample example);
 
+    @SelectProvider(type=BizAccountSqlProvider.class, method="selectByExampleForUpdate")
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="acc_code", property="accCode", jdbcType=JdbcType.VARCHAR),
+            @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
+            @Result(column="amt", property="amt", jdbcType=JdbcType.DOUBLE),
+            @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
+            @Result(column="created", property="created", jdbcType=JdbcType.TIMESTAMP)
+    })
+    List<BizAccount> selectByExampleForUpdate(BizAccountExample example);
+
     @Select({
         "select",
         "id, acc_code, user_id, amt, remark, created",
