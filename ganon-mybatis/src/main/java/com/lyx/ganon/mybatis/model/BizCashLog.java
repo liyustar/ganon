@@ -1,5 +1,6 @@
 package com.lyx.ganon.mybatis.model;
 
+import com.lyx.ganon.mybatis.constant.CashType;
 import java.util.Date;
 
 public class BizCashLog {
@@ -9,13 +10,15 @@ public class BizCashLog {
 
     private String accTo;
 
-    private Integer articleId;
+    private Integer bizId;
 
     private Double amt;
 
     private String remark;
 
     private Date created;
+
+    private CashType bizType;
 
     public Integer getId() {
         return id;
@@ -41,12 +44,12 @@ public class BizCashLog {
         this.accTo = accTo;
     }
 
-    public Integer getArticleId() {
-        return articleId;
+    public Integer getBizId() {
+        return bizId;
     }
 
-    public void setArticleId(Integer articleId) {
-        this.articleId = articleId;
+    public void setBizId(Integer bizId) {
+        this.bizId = bizId;
     }
 
     public Double getAmt() {
@@ -71,5 +74,13 @@ public class BizCashLog {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public CashType getBizType() {
+        return bizType;
+    }
+
+    public void setBizType(CashType bizType) {
+        this.bizType = bizType;
     }
 }

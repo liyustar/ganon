@@ -1,5 +1,6 @@
 package com.lyx.ganon.mybatis.service;
 
+import com.lyx.ganon.mybatis.constant.CashType;
 import com.lyx.ganon.mybatis.mapper.BizUserMapper;
 import com.lyx.ganon.mybatis.model.BizUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UserService {
         userMapper.deleteByExample(null);
     }
 
-    public int transMoney(int fromUserId, int toUserId, double amt, String remark) {
-        return accountService.transUserMoney(fromUserId, toUserId, amt, remark);
+    public int transMoney(int fromUserId, int toUserId, double amt, CashType cashType, int bizId, String remark) {
+        return accountService.transUserMoney(fromUserId, toUserId, amt, cashType, bizId, remark);
     }
 }

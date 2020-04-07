@@ -1,5 +1,6 @@
 package com.lyx.ganon.mybatis.model;
 
+import com.lyx.ganon.mybatis.constant.CashType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -65,19 +66,50 @@ public class BizCashLogExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> bizTypeCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<>();
+            bizTypeCriteria = new ArrayList<>();
+        }
+
+        public List<Criterion> getBizTypeCriteria() {
+            return bizTypeCriteria;
+        }
+
+        protected void addBizTypeCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            bizTypeCriteria.add(new Criterion(condition, value, "com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addBizTypeCriterion(String condition, CashType value1, CashType value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            bizTypeCriteria.add(new Criterion(condition, value1, value2, "com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || bizTypeCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(bizTypeCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +121,7 @@ public class BizCashLogExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +129,7 @@ public class BizCashLogExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +137,7 @@ public class BizCashLogExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andIdIsNull() {
@@ -305,63 +340,63 @@ public class BizCashLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdIsNull() {
-            addCriterion("article_id is null");
+        public Criteria andBizIdIsNull() {
+            addCriterion("biz_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdIsNotNull() {
-            addCriterion("article_id is not null");
+        public Criteria andBizIdIsNotNull() {
+            addCriterion("biz_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdEqualTo(Integer value) {
-            addCriterion("article_id =", value, "articleId");
+        public Criteria andBizIdEqualTo(Integer value) {
+            addCriterion("biz_id =", value, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdNotEqualTo(Integer value) {
-            addCriterion("article_id <>", value, "articleId");
+        public Criteria andBizIdNotEqualTo(Integer value) {
+            addCriterion("biz_id <>", value, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdGreaterThan(Integer value) {
-            addCriterion("article_id >", value, "articleId");
+        public Criteria andBizIdGreaterThan(Integer value) {
+            addCriterion("biz_id >", value, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("article_id >=", value, "articleId");
+        public Criteria andBizIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("biz_id >=", value, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdLessThan(Integer value) {
-            addCriterion("article_id <", value, "articleId");
+        public Criteria andBizIdLessThan(Integer value) {
+            addCriterion("biz_id <", value, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdLessThanOrEqualTo(Integer value) {
-            addCriterion("article_id <=", value, "articleId");
+        public Criteria andBizIdLessThanOrEqualTo(Integer value) {
+            addCriterion("biz_id <=", value, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdIn(List<Integer> values) {
-            addCriterion("article_id in", values, "articleId");
+        public Criteria andBizIdIn(List<Integer> values) {
+            addCriterion("biz_id in", values, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdNotIn(List<Integer> values) {
-            addCriterion("article_id not in", values, "articleId");
+        public Criteria andBizIdNotIn(List<Integer> values) {
+            addCriterion("biz_id not in", values, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdBetween(Integer value1, Integer value2) {
-            addCriterion("article_id between", value1, value2, "articleId");
+        public Criteria andBizIdBetween(Integer value1, Integer value2) {
+            addCriterion("biz_id between", value1, value2, "bizId");
             return (Criteria) this;
         }
 
-        public Criteria andArticleIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("article_id not between", value1, value2, "articleId");
+        public Criteria andBizIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("biz_id not between", value1, value2, "bizId");
             return (Criteria) this;
         }
 
@@ -552,6 +587,66 @@ public class BizCashLogExample {
 
         public Criteria andCreatedNotBetween(Date value1, Date value2) {
             addCriterion("created not between", value1, value2, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeIsNull() {
+            addCriterion("biz_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeIsNotNull() {
+            addCriterion("biz_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeEqualTo(CashType value) {
+            addBizTypeCriterion("biz_type =", value, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeNotEqualTo(CashType value) {
+            addBizTypeCriterion("biz_type <>", value, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeGreaterThan(CashType value) {
+            addBizTypeCriterion("biz_type >", value, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeGreaterThanOrEqualTo(CashType value) {
+            addBizTypeCriterion("biz_type >=", value, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeLessThan(CashType value) {
+            addBizTypeCriterion("biz_type <", value, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeLessThanOrEqualTo(CashType value) {
+            addBizTypeCriterion("biz_type <=", value, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeIn(List<CashType> values) {
+            addBizTypeCriterion("biz_type in", values, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeNotIn(List<CashType> values) {
+            addBizTypeCriterion("biz_type not in", values, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeBetween(CashType value1, CashType value2) {
+            addBizTypeCriterion("biz_type between", value1, value2, "bizType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBizTypeNotBetween(CashType value1, CashType value2) {
+            addBizTypeCriterion("biz_type not between", value1, value2, "bizType");
             return (Criteria) this;
         }
     }

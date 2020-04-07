@@ -16,3 +16,6 @@ spring:
 logging:
   level:
     com.lyx.ganon.mybatis: debug
+
+mybatis:
+  type-handlers-package: com.lyx.ganon.mybatis.config.typehandler

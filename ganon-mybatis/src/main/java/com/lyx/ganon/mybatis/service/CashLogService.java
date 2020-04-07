@@ -1,5 +1,6 @@
 package com.lyx.ganon.mybatis.service;
 
+import com.lyx.ganon.mybatis.constant.CashType;
 import com.lyx.ganon.mybatis.mapper.BizCashLogMapper;
 import com.lyx.ganon.mybatis.model.BizCashLog;
 import com.lyx.ganon.mybatis.model.BizCashLogExample;
@@ -14,9 +15,9 @@ public class CashLogService {
     @Autowired
     private BizCashLogMapper cashLogMapper;
 
-    public List<BizCashLog> getCashLogs(Integer id) {
+    public List<BizCashLog> getCashLogs(Integer id, CashType type) {
         BizCashLogExample example = new BizCashLogExample();
-        example.createCriteria().andArticleIdEqualTo(id);
+        example.createCriteria().andBizIdEqualTo(id).andBizTypeEqualTo(type);
         return cashLogMapper.selectByExample(example);
     }
 

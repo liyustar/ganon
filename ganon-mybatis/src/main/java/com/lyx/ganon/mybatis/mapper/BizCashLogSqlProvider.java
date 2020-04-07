@@ -35,8 +35,8 @@ public class BizCashLogSqlProvider {
             sql.VALUES("acc_to", "#{accTo,jdbcType=VARCHAR}");
         }
         
-        if (record.getArticleId() != null) {
-            sql.VALUES("article_id", "#{articleId,jdbcType=INTEGER}");
+        if (record.getBizId() != null) {
+            sql.VALUES("biz_id", "#{bizId,jdbcType=INTEGER}");
         }
         
         if (record.getAmt() != null) {
@@ -51,6 +51,10 @@ public class BizCashLogSqlProvider {
             sql.VALUES("created", "#{created,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getBizType() != null) {
+            sql.VALUES("biz_type", "#{bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}");
+        }
+        
         return sql.toString();
     }
 
@@ -63,10 +67,11 @@ public class BizCashLogSqlProvider {
         }
         sql.SELECT("acc_from");
         sql.SELECT("acc_to");
-        sql.SELECT("article_id");
+        sql.SELECT("biz_id");
         sql.SELECT("amt");
         sql.SELECT("remark");
         sql.SELECT("created");
+        sql.SELECT("biz_type");
         sql.FROM("biz_cash_log");
         applyWhere(sql, example, false);
         
@@ -96,8 +101,8 @@ public class BizCashLogSqlProvider {
             sql.SET("acc_to = #{record.accTo,jdbcType=VARCHAR}");
         }
         
-        if (record.getArticleId() != null) {
-            sql.SET("article_id = #{record.articleId,jdbcType=INTEGER}");
+        if (record.getBizId() != null) {
+            sql.SET("biz_id = #{record.bizId,jdbcType=INTEGER}");
         }
         
         if (record.getAmt() != null) {
@@ -112,6 +117,10 @@ public class BizCashLogSqlProvider {
             sql.SET("created = #{record.created,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getBizType() != null) {
+            sql.SET("biz_type = #{record.bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -123,10 +132,11 @@ public class BizCashLogSqlProvider {
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("acc_from = #{record.accFrom,jdbcType=VARCHAR}");
         sql.SET("acc_to = #{record.accTo,jdbcType=VARCHAR}");
-        sql.SET("article_id = #{record.articleId,jdbcType=INTEGER}");
+        sql.SET("biz_id = #{record.bizId,jdbcType=INTEGER}");
         sql.SET("amt = #{record.amt,jdbcType=DOUBLE}");
         sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
         sql.SET("created = #{record.created,jdbcType=TIMESTAMP}");
+        sql.SET("biz_type = #{record.bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}");
         
         BizCashLogExample example = (BizCashLogExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -145,8 +155,8 @@ public class BizCashLogSqlProvider {
             sql.SET("acc_to = #{accTo,jdbcType=VARCHAR}");
         }
         
-        if (record.getArticleId() != null) {
-            sql.SET("article_id = #{articleId,jdbcType=INTEGER}");
+        if (record.getBizId() != null) {
+            sql.SET("biz_id = #{bizId,jdbcType=INTEGER}");
         }
         
         if (record.getAmt() != null) {
@@ -159,6 +169,10 @@ public class BizCashLogSqlProvider {
         
         if (record.getCreated() != null) {
             sql.SET("created = #{created,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getBizType() != null) {
+            sql.SET("biz_type = #{bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

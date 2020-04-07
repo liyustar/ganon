@@ -2,6 +2,7 @@ package com.lyx.ganon.mybatis.service;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.lyx.ganon.mybatis.constant.CashType;
 import com.lyx.ganon.mybatis.mapper.BizAccountMapper;
 import com.lyx.ganon.mybatis.model.BizAccount;
 import com.lyx.ganon.mybatis.model.BizAccountExample;
@@ -32,7 +33,7 @@ public class AccountService {
     }
 
     @Transactional
-    public int transUserMoney(int fromUserId, int toUserId, double amt, String remark) {
+    public int transUserMoney(int fromUserId, int toUserId, double amt, CashType cashType, int bizId, String remark) {
         BizAccountExample example = new BizAccountExample();
         example.createCriteria().andUserIdIn(Lists.newArrayList(fromUserId, toUserId));
         List<BizAccount> bizAccounts = accountMapper.selectByExampleForUpdate(example);
@@ -57,7 +58,8 @@ public class AccountService {
         cashLog.setAccFrom(fromAcc.get().getAccCode());
         cashLog.setAccTo(toAcc.get().getAccCode());
         cashLog.setAmt(amt);
-        cashLog.setArticleId(-1);
+        cashLog.setBizId(bizId);
+        cashLog.setBizType(cashType);
         cashLog.setRemark(remark);
         return cashLogService.createCashLog(cashLog);
     }

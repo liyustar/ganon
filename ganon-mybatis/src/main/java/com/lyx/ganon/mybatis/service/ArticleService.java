@@ -1,5 +1,6 @@
 package com.lyx.ganon.mybatis.service;
 
+import com.lyx.ganon.mybatis.constant.CashType;
 import com.lyx.ganon.mybatis.controller.request.RewardReq;
 import com.lyx.ganon.mybatis.mapper.BizArticleMapper;
 import com.lyx.ganon.mybatis.model.BizArticle;
@@ -52,10 +53,12 @@ public class ArticleService {
         return userService.transMoney(rewardReq.getUserId(),
                 article.getAuthorId(),
                 rewardReq.getAmt(),
+                CashType.ARTICLE_REWARD,
+                article.getId(),
                 "文章打赏");
     }
 
     public List<BizCashLog> getRewards(Integer id) {
-        return cashLogService.getCashLogs(id);
+        return cashLogService.getCashLogs(id, CashType.ARTICLE_REWARD);
     }
 }

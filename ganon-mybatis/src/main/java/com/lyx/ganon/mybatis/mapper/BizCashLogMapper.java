@@ -1,5 +1,6 @@
 package com.lyx.ganon.mybatis.mapper;
 
+import com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler;
 import com.lyx.ganon.mybatis.model.BizCashLog;
 import com.lyx.ganon.mybatis.model.BizCashLogExample;
 import java.util.List;
@@ -32,11 +33,11 @@ public interface BizCashLogMapper {
 
     @Insert({
         "insert into biz_cash_log (acc_from, acc_to, ",
-        "article_id, amt, remark, ",
-        "created)",
+        "biz_id, amt, remark, ",
+        "created, biz_type)",
         "values (#{accFrom,jdbcType=VARCHAR}, #{accTo,jdbcType=VARCHAR}, ",
-        "#{articleId,jdbcType=INTEGER}, #{amt,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR}, ",
-        "#{created,jdbcType=TIMESTAMP})"
+        "#{bizId,jdbcType=INTEGER}, #{amt,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR}, ",
+        "#{created,jdbcType=TIMESTAMP}, #{bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(BizCashLog record);
@@ -50,16 +51,17 @@ public interface BizCashLogMapper {
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="acc_from", property="accFrom", jdbcType=JdbcType.VARCHAR),
         @Result(column="acc_to", property="accTo", jdbcType=JdbcType.VARCHAR),
-        @Result(column="article_id", property="articleId", jdbcType=JdbcType.INTEGER),
+        @Result(column="biz_id", property="bizId", jdbcType=JdbcType.INTEGER),
         @Result(column="amt", property="amt", jdbcType=JdbcType.DOUBLE),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
-        @Result(column="created", property="created", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="created", property="created", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="biz_type", property="bizType", typeHandler=CodeEnumTypeHandler.class, jdbcType=JdbcType.TINYINT)
     })
     List<BizCashLog> selectByExample(BizCashLogExample example);
 
     @Select({
         "select",
-        "id, acc_from, acc_to, article_id, amt, remark, created",
+        "id, acc_from, acc_to, biz_id, amt, remark, created, biz_type",
         "from biz_cash_log",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -67,10 +69,11 @@ public interface BizCashLogMapper {
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="acc_from", property="accFrom", jdbcType=JdbcType.VARCHAR),
         @Result(column="acc_to", property="accTo", jdbcType=JdbcType.VARCHAR),
-        @Result(column="article_id", property="articleId", jdbcType=JdbcType.INTEGER),
+        @Result(column="biz_id", property="bizId", jdbcType=JdbcType.INTEGER),
         @Result(column="amt", property="amt", jdbcType=JdbcType.DOUBLE),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
-        @Result(column="created", property="created", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="created", property="created", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="biz_type", property="bizType", typeHandler=CodeEnumTypeHandler.class, jdbcType=JdbcType.TINYINT)
     })
     BizCashLog selectByPrimaryKey(Integer id);
 
@@ -87,10 +90,11 @@ public interface BizCashLogMapper {
         "update biz_cash_log",
         "set acc_from = #{accFrom,jdbcType=VARCHAR},",
           "acc_to = #{accTo,jdbcType=VARCHAR},",
-          "article_id = #{articleId,jdbcType=INTEGER},",
+          "biz_id = #{bizId,jdbcType=INTEGER},",
           "amt = #{amt,jdbcType=DOUBLE},",
           "remark = #{remark,jdbcType=VARCHAR},",
-          "created = #{created,jdbcType=TIMESTAMP}",
+          "created = #{created,jdbcType=TIMESTAMP},",
+          "biz_type = #{bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(BizCashLog record);
