@@ -2,7 +2,6 @@ package com.lyx.ganon.mybatis.config.typehandler;
 
 import com.lyx.ganon.mybatis.constant.BaseCodeEnum;
 import com.lyx.ganon.mybatis.constant.CashType;
-import com.lyx.ganon.mybatis.constant.CodeEnumUtil;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
@@ -11,7 +10,11 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
+/**
+ * @author liyuxing
+ */
 @MappedTypes(value = {
         CashType.class,
 })
@@ -52,7 +55,11 @@ public class CodeEnumTypeHandler<E extends Enum<?> & BaseCodeEnum> extends BaseT
 
     private E codeOf(int code) {
         try {
-            return CodeEnumUtil.codeOf(type, code);
+            E[] enumConstants = type.getEnumConstants();
+            return Arrays.stream(enumConstants)
+                    .filter(e -> e.getCode() == code)
+                    .findFirst()
+                    .orElse(null);
         } catch (Exception ex) {
             throw new IllegalArgumentException("Cannot convert " + code + " to " + type.getSimpleName() + " by code value.", ex);
         }
