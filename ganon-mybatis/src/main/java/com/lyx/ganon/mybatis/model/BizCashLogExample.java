@@ -66,50 +66,19 @@ public class BizCashLogExample {
     }
 
     protected abstract static class GeneratedCriteria {
-        protected List<Criterion> bizTypeCriteria;
-
-        protected List<Criterion> allCriteria;
-
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<>();
-            bizTypeCriteria = new ArrayList<>();
-        }
-
-        public List<Criterion> getBizTypeCriteria() {
-            return bizTypeCriteria;
-        }
-
-        protected void addBizTypeCriterion(String condition, Object value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            bizTypeCriteria.add(new Criterion(condition, value, "com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler"));
-            allCriteria = null;
-        }
-
-        protected void addBizTypeCriterion(String condition, CashType value1, CashType value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            bizTypeCriteria.add(new Criterion(condition, value1, value2, "com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler"));
-            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0
-                || bizTypeCriteria.size() > 0;
+            return criteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            if (allCriteria == null) {
-                allCriteria = new ArrayList<>();
-                allCriteria.addAll(criteria);
-                allCriteria.addAll(bizTypeCriteria);
-            }
-            return allCriteria;
+            return criteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -121,7 +90,6 @@ public class BizCashLogExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
-            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -129,7 +97,6 @@ public class BizCashLogExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
-            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -137,7 +104,6 @@ public class BizCashLogExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-            allCriteria = null;
         }
 
         public Criteria andIdIsNull() {
@@ -601,52 +567,52 @@ public class BizCashLogExample {
         }
 
         public Criteria andBizTypeEqualTo(CashType value) {
-            addBizTypeCriterion("biz_type =", value, "bizType");
+            addCriterion("biz_type =", value, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeNotEqualTo(CashType value) {
-            addBizTypeCriterion("biz_type <>", value, "bizType");
+            addCriterion("biz_type <>", value, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeGreaterThan(CashType value) {
-            addBizTypeCriterion("biz_type >", value, "bizType");
+            addCriterion("biz_type >", value, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeGreaterThanOrEqualTo(CashType value) {
-            addBizTypeCriterion("biz_type >=", value, "bizType");
+            addCriterion("biz_type >=", value, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeLessThan(CashType value) {
-            addBizTypeCriterion("biz_type <", value, "bizType");
+            addCriterion("biz_type <", value, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeLessThanOrEqualTo(CashType value) {
-            addBizTypeCriterion("biz_type <=", value, "bizType");
+            addCriterion("biz_type <=", value, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeIn(List<CashType> values) {
-            addBizTypeCriterion("biz_type in", values, "bizType");
+            addCriterion("biz_type in", values, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeNotIn(List<CashType> values) {
-            addBizTypeCriterion("biz_type not in", values, "bizType");
+            addCriterion("biz_type not in", values, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeBetween(CashType value1, CashType value2) {
-            addBizTypeCriterion("biz_type between", value1, value2, "bizType");
+            addCriterion("biz_type between", value1, value2, "bizType");
             return (Criteria) this;
         }
 
         public Criteria andBizTypeNotBetween(CashType value1, CashType value2) {
-            addBizTypeCriterion("biz_type not between", value1, value2, "bizType");
+            addCriterion("biz_type not between", value1, value2, "bizType");
             return (Criteria) this;
         }
     }

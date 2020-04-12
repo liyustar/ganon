@@ -36,7 +36,7 @@
         </table>
         <table tableName="biz_cash_log">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <columnOverride column="biz_type" javaType="com.lyx.ganon.mybatis.constant.CashType" typeHandler="com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler"/>
+            <columnOverride column="biz_type" javaType="com.lyx.ganon.mybatis.constant.CashType"/>
         </table>
     </context>
 

@@ -52,7 +52,7 @@ public class BizCashLogSqlProvider {
         }
         
         if (record.getBizType() != null) {
-            sql.VALUES("biz_type", "#{bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}");
+            sql.VALUES("biz_type", "#{bizType,jdbcType=TINYINT}");
         }
         
         return sql.toString();
@@ -118,7 +118,7 @@ public class BizCashLogSqlProvider {
         }
         
         if (record.getBizType() != null) {
-            sql.SET("biz_type = #{record.bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}");
+            sql.SET("biz_type = #{record.bizType,jdbcType=TINYINT}");
         }
         
         applyWhere(sql, example, true);
@@ -136,7 +136,7 @@ public class BizCashLogSqlProvider {
         sql.SET("amt = #{record.amt,jdbcType=DOUBLE}");
         sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
         sql.SET("created = #{record.created,jdbcType=TIMESTAMP}");
-        sql.SET("biz_type = #{record.bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}");
+        sql.SET("biz_type = #{record.bizType,jdbcType=TINYINT}");
         
         BizCashLogExample example = (BizCashLogExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -172,7 +172,7 @@ public class BizCashLogSqlProvider {
         }
         
         if (record.getBizType() != null) {
-            sql.SET("biz_type = #{bizType,jdbcType=TINYINT,typeHandler=com.lyx.ganon.mybatis.config.typehandler.CodeEnumTypeHandler}");
+            sql.SET("biz_type = #{bizType,jdbcType=TINYINT}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

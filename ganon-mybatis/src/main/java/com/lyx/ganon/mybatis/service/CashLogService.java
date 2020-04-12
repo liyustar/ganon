@@ -15,7 +15,7 @@ public class CashLogService {
     @Autowired
     private BizCashLogMapper cashLogMapper;
 
-    public List<BizCashLog> getCashLogs(Integer id, CashType type) {
+    public List<BizCashLog> getCashLogs(int id, CashType type) {
         BizCashLogExample example = new BizCashLogExample();
         example.createCriteria().andBizIdEqualTo(id).andBizTypeEqualTo(type);
         return cashLogMapper.selectByExample(example);
@@ -23,5 +23,9 @@ public class CashLogService {
 
     public int createCashLog(BizCashLog cashLog) {
         return cashLogMapper.insertSelective(cashLog);
+    }
+
+    public CashType getCashTypeById(int id) {
+        return cashLogMapper.selectCashTypeById(id);
     }
 }

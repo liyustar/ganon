@@ -18,4 +18,4 @@ logging:
     com.lyx.ganon.mybatis: debug
 
 mybatis:
-  type-handlers-package: com.lyx.ganon.mybatis.config.typehandler
+  type-handlers-package: com.lyx.ganon.mybatis.config.type

@@ -1,7 +1,6 @@
-package com.lyx.ganon.mybatis.config.typehandler;
+package com.lyx.ganon.mybatis.config.type;
 
 import com.lyx.ganon.mybatis.constant.BaseCodeEnum;
-import com.lyx.ganon.mybatis.constant.CashType;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
@@ -15,9 +14,7 @@ import java.util.Arrays;
 /**
  * @author liyuxing
  */
-@MappedTypes(value = {
-        CashType.class,
-})
+@MappedTypes(BaseCodeEnum.class)
 public class CodeEnumTypeHandler<E extends Enum<?> & BaseCodeEnum> extends BaseTypeHandler<BaseCodeEnum> {
 
     private Class<E> type;
