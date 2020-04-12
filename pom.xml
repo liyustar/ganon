@@ -35,6 +35,7 @@
         <module>ganon-common</module>
         <module>ganon-admin</module>
         <module>ganon-mybatis</module>
+        <module>ganon-netty</module>
     </modules>
 
     <!-- 版本说明：这里统一管理依赖的版本号 -->
