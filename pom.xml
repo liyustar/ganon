@@ -22,7 +22,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <guava.version>28.2-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <swagger-ui.version>2.9.2</swagger-ui.version>
         <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
         <mybatis-generator.version>1.4.0</mybatis-generator.version>
