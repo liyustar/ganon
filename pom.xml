@@ -27,7 +27,7 @@
         <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
         <mybatis-generator.version>1.4.0</mybatis-generator.version>
         <pagehelper-spring-boot-starter.version>1.2.13</pagehelper-spring-boot-starter.version>
-        <fastjson.version>1.2.62</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
 
     <!-- 模块说明：这里声明多个子模块 -->
